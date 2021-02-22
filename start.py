@@ -12,6 +12,7 @@ import openpyxl
 from openpyxl import load_workbook
 from colorama import Style, Fore
 from selenium.webdriver.common.proxy import Proxy, ProxyType
+import datetime
 
 LINKS = [] #Array with links
 
@@ -49,14 +50,14 @@ class Main_class:
     """Create brosweser"""
     def make_browser(self):
         opts = Options() #Create Options
-        PROXY = "193.56.255.180:3128"
+        PROXY = "79.110.52.252:3128"
         
         
         opts.add_argument('--proxy-server=%s' % PROXY)
         ua = UserAgent() #Fake User Agent
         user_agent = ua.random #random user agent
         opts.add_argument(f'user-agent={user_agent}') #add argument
-        self.driver = webdriver.Chrome('windows/chromedriver.exe',
+        self.driver = webdriver.Chrome('linux/chromedriver',
                 chrome_options=opts)
       
         print(Fore.GREEN + "Создание браузера завершилось!", Style.RESET_ALL)
@@ -148,8 +149,13 @@ def main():
 
 
 if __name__ == "__main__":
-        main()
-        
-        #except:
-            #root1 = Main_class('as')
-            #root1.closer()
+    now = datetime.datetime.now()
+    if now.day < 25:
+        while True:
+            try:
+                main()
+            except:
+                root1 = Main_class('as')
+                root1.closer()
+    else:
+        print("Период проверки закончился!")
