@@ -129,6 +129,7 @@ class Main_class:
             sleep(3)
         try:
             self.driver.close()
+            self.driver.quit()
         except:
             pass
 
