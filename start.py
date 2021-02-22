@@ -25,14 +25,14 @@ def load_data(login,password):
     sheet.cell(row = rw, column = 1).value = str(login)
     sheet.cell(row = rw, column = 2).value = str(password)
     wb.save('datafile.xlsx')
-    print(Fore.Green + "Запись логина и пароля успешно произвелась..", Style.RESET_ALL)
+    print(Fore.GREEN + "Запись логина и пароля успешно произвелась..", Style.RESET_ALL)
 
 """APPEND ARRAY FROM links.txt"""
 def load_links():
     with open('links.txt', 'r') as f:
         for el in f:
             LINKS.append(el.replace('/n', ''))
-    print(Fore.Green + "Добавление ссылок успешно..", Style.RESET_ALL)
+    print(Fore.GREEN + "Добавление ссылок успешно..", Style.RESET_ALL)
             
 
 
@@ -61,7 +61,7 @@ class Main_class:
         self.driver = webdriver.Chrome('windows/chromedriver.exe',
                 chrome_options=opts,
                 desired_capabilities=capabilities) #Create Browser with Options
-        print(Fore.Green + "Создание браузера завершилось!", Style.RESET_ALL)
+        print(Fore.GREEN + "Создание браузера завершилось!", Style.RESET_ALL)
 
 
     """Login and Password Generator"""
@@ -72,7 +72,7 @@ class Main_class:
             self.password += random.choice(chars)
         bg = self.password + '1'
         load_data(self.password, bg)
-        print(Fore.Green + "Логин и пароль успешно создались!", Style.RESET_ALL)
+        print(Fore.GREEN + "Логин и пароль успешно создались!", Style.RESET_ALL)
     
     """Create Mail"""
     def make_mail(self):
@@ -80,7 +80,7 @@ class Main_class:
         username = self.driver.find_element_by_id('userName').get_attribute('value') #mail
         domain = self.driver.find_element_by_id('domainName2').get_attribute('value') #domain
         self.alls = username + "@" + domain #full adress: template@domain.com
-        print(Fore.Green + "Создание почты завершилось!", Style.RESET_ALL)
+        print(Fore.GREEN + "Создание почты завершилось!", Style.RESET_ALL)
 
     """Create Account in pornhub"""
     def create_account(self):
@@ -113,7 +113,7 @@ class Main_class:
         try:
             self.driver.get(the_confirmation.text)
 
-            print(Fore.Green + "Регистрация успешно завершилась!", Style.RESET_ALL)
+            print(Fore.GREEN + "Регистрация успешно завершилась!", Style.RESET_ALL)
         except:
             self.view()
         
@@ -150,9 +150,8 @@ def main():
 
 
 if __name__ == "__main__":
-    while True:
-        try:
-            main()
-        except:
-            root1 = Main_class('as')
-            root1.closer()
+        main()
+        
+        #except:
+            #root1 = Main_class('as')
+            #root1.closer()
