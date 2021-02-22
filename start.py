@@ -49,18 +49,16 @@ class Main_class:
     """Create brosweser"""
     def make_browser(self):
         opts = Options() #Create Options
-        prox = Proxy()
-        prox.proxy_type = ProxyType.MANUAL
-        prox.http_proxy = "78.47.16.54:80"
-
-        capabilities = webdriver.DesiredCapabilities.CHROME
-        prox.add_to_capabilities(capabilities)
+        PROXY = "193.56.255.180:3128"
+        
+        
+        opts.add_argument('--proxy-server=%s' % PROXY)
         ua = UserAgent() #Fake User Agent
         user_agent = ua.random #random user agent
         opts.add_argument(f'user-agent={user_agent}') #add argument
         self.driver = webdriver.Chrome('windows/chromedriver.exe',
-                chrome_options=opts,
-                desired_capabilities=capabilities) #Create Browser with Options
+                chrome_options=opts)
+      
         print(Fore.GREEN + "Создание браузера завершилось!", Style.RESET_ALL)
 
 
